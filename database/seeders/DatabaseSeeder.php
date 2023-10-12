@@ -19,5 +19,13 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class
         ]);
+
+        $roles = \App\Models\Role::all();
+
+        \App\Models\User::all()->each(function ($user) use ($roles) {
+            $user->roles()->attach(
+                $roles->random(rand(1, 4))->pluck('id')->toArray()
+            );
+        });
     }
 }

@@ -9,8 +9,10 @@ class User extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function roles()
     {
-        return  $this->hasMany(Role::class);
+        return  $this->belongsToMany(Role::class, 'user_role');
     }
 }

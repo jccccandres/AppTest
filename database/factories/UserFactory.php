@@ -16,7 +16,6 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'role_id' => \App\Models\Role::all()->random()->id,
         ];
     }
 }

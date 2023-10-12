@@ -11,8 +11,13 @@ class User extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
+    protected $fillable = [
+        'name',
+        'email'
+    ];
+
     public function roles()
     {
-        return  $this->belongsToMany(Role::class, 'user_role');
+        return $this->belongsToMany(Role::class, 'user_role');
     }
 }

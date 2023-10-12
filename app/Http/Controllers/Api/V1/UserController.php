@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\UserResource;
 use App\Http\Resources\V1\UserCollection;
 use App\Models\User;
+use App\Http\Requests\V1\StoreUserRequest;
 
-use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
@@ -31,7 +31,9 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $user = User::create($request->all());
+        $user->roles()->attach($request->all()['roles']);
+        return new UserResource($user);
     }
 
     /**
